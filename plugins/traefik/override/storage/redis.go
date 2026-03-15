@@ -413,6 +413,10 @@ func parseAddress(value interface{}) string {
 }
 
 func parseString(value interface{}) string {
+	if value == nil {
+		return ""
+	}
+
 	switch typed := value.(type) {
 	case string:
 		return typed
