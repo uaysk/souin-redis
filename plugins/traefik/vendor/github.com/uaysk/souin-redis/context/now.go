@@ -19,16 +19,8 @@ func (*nowContext) SetContextWithBaseRequest(req *http.Request, _ *http.Request)
 func (cc *nowContext) SetupContext(_ configurationtypes.AbstractConfigurationInterface) {}
 
 func (cc *nowContext) SetContext(req *http.Request) *http.Request {
-	var now time.Time
-	var e error
-
-	now, e = time.Parse(time.RFC1123, req.Header.Get("Date"))
-
-	if e != nil {
-		now = time.Now().UTC()
-		req.Header.Set("Date", now.Format(time.RFC1123))
-	}
-
+	now := time.Now().UTC()
+	req.Header.Set("Date", now.Format(time.RFC1123))
 	return req.WithContext(context.WithValue(req.Context(), Now, now))
 }
 

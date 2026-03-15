@@ -5,10 +5,7 @@ import (
 	"net/http"
 	"regexp"
 
-	"github.com/caddyserver/caddy/v2"
-	"github.com/caddyserver/caddy/v2/modules/caddyhttp"
 	"github.com/uaysk/souin-redis/configurationtypes"
-	"github.com/darkweak/storages/core"
 )
 
 const (
@@ -23,8 +20,8 @@ type keyContext struct {
 	disable_host   bool
 	disable_method bool
 	disable_query  bool
-	disable_vary   bool
 	disable_scheme bool
+	disable_vary   bool
 	displayable    bool
 	hash           bool
 	headers        []string
@@ -53,34 +50,24 @@ func (g *keyContext) SetupContext(c configurationtypes.AbstractConfigurationInte
 
 	g.overrides = make([]map[*regexp.Regexp]keyContext, 0)
 
-	for _, cacheKey := range c.GetCacheKeys() {
-		for r, v := range cacheKey {
-			g.overrides = append(g.overrides, map[*regexp.Regexp]keyContext{r.Regexp: {
-				disable_body:   v.DisableBody,
-				disable_host:   v.DisableHost,
-				disable_method: v.DisableMethod,
-				disable_query:  v.DisableQuery,
-				disable_scheme: v.DisableScheme,
-				disable_vary:   v.DisableVary,
-				hash:           v.Hash,
-				displayable:    !v.Hide,
-				template:       v.Template,
-				headers:        v.Headers,
-			}})
-		}
-	}
+	// for _, cacheKey := range c.GetCacheKeys() {
+	// 	for r, v := range cacheKey {
+	// 		g.overrides = append(g.overrides, map[*regexp.Regexp]keyContext{r.Regexp: {
+	// 			disable_body:   v.DisableBody,
+	// 			disable_host:   v.DisableHost,
+	// 			disable_method: v.DisableMethod,
+	// 			disable_query:  v.DisableQuery,
+	// 			disable_scheme: v.DisableScheme,
+	// 			hash:           v.Hash,
+	// 			displayable:    !v.Hide,
+	// 			template:       v.Template,
+	// 			headers:        v.Headers,
+	// 		}})
+	// 	}
+	// }
 
-	switch c.GetPluginName() {
-	case "caddy":
-		g.initializer = func(r *http.Request) *http.Request {
-			return r
-		}
-	default:
-		g.initializer = func(r *http.Request) *http.Request {
-			repl := caddy.NewReplacer()
-
-			return caddyhttp.PrepareRequest(r, repl, nil, nil)
-		}
+	g.initializer = func(r *http.Request) *http.Request {
+		return r
 	}
 }
 
@@ -120,9 +107,6 @@ func parseKeyInformations(req *http.Request, kCtx keyContext) (query, body, host
 }
 
 func (g *keyContext) computeKey(req *http.Request) (key string, headers []string, hash, displayable bool) {
-	if g.template != "" {
-		return req.Context().Value(caddy.ReplacerCtxKey).(*caddy.Replacer).ReplaceAll(g.template, ""), g.headers, g.hash, g.displayable
-	}
 	key = req.URL.Path
 	query, body, host, scheme, method, headerValues, headers, displayable, hash := parseKeyInformations(req, *g)
 
@@ -130,9 +114,6 @@ func (g *keyContext) computeKey(req *http.Request) (key string, headers []string
 	for _, current := range g.overrides {
 		for k, v := range current {
 			if k.MatchString(req.RequestURI) {
-				if v.template != "" {
-					return req.Context().Value(caddy.ReplacerCtxKey).(*caddy.Replacer).ReplaceAll(v.template, ""), v.headers, v.hash, v.displayable
-				}
 				query, body, host, scheme, method, headerValues, headers, displayable, hash = parseKeyInformations(req, v)
 				hasOverride = true
 				break
@@ -158,13 +139,9 @@ func (g *keyContext) SetContext(req *http.Request) *http.Request {
 			context.WithValue(
 				context.WithValue(
 					context.WithValue(
-						context.WithValue(
-							req.Context(),
-							Key,
-							key,
-						),
-						core.DISABLE_VARY_CTX, //nolint:staticcheck // we don't care about collision
-						g.disable_vary,
+						req.Context(),
+						Key,
+						key,
 					),
 					Hashed,
 					hash,

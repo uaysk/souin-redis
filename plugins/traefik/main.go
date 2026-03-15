@@ -340,7 +340,6 @@ func parseIntSlice(i interface{}) []int {
 // New create Souin instance.
 func New(_ context.Context, next http.Handler, config *TestConfiguration, name string) (http.Handler, error) {
 	c := parseConfiguration(*config)
-	initRedisStorage(&c)
 
 	return &SouinTraefikMiddleware{
 		name:             name,

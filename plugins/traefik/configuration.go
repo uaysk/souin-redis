@@ -1,7 +1,6 @@
 package traefik
 
 import (
-	"github.com/darkweak/storages/core"
 	"github.com/uaysk/souin-redis/configurationtypes"
 )
 
@@ -12,7 +11,6 @@ type Configuration struct {
 	CacheKeys            configurationtypes.CacheKeys                `yaml:"cache_keys"`
 	URLs                 map[string]configurationtypes.URL           `json:"urls" yaml:"urls"`
 	LogLevel             string                                      `json:"log_level" yaml:"log_level"`
-	Logger               core.Logger                                 `json:"-" yaml:"-"`
 	Ykeys                map[string]configurationtypes.SurrogateKeys `json:"ykeys" yaml:"ykeys"`
 	SurrogateKeys        map[string]configurationtypes.SurrogateKeys `json:"surrogate_keys" yaml:"surrogate_keys"`
 	SurrogateKeyDisabled bool                                        `json:"disable_surrogate_key" yaml:"disable_surrogate_key"`
@@ -41,16 +39,6 @@ func (c *Configuration) GetAPI() configurationtypes.API {
 // GetLogLevel get the log level
 func (c *Configuration) GetLogLevel() string {
 	return c.LogLevel
-}
-
-// GetLogger returns the current logger.
-func (c *Configuration) GetLogger() core.Logger {
-	return c.Logger
-}
-
-// SetLogger stores the logger used by the middleware internals.
-func (c *Configuration) SetLogger(l core.Logger) {
-	c.Logger = l
 }
 
 // GetYkeys get the ykeys list
