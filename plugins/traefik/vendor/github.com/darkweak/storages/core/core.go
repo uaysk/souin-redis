@@ -10,7 +10,6 @@ import (
 	"sync"
 	"time"
 
-	"github.com/pierrec/lz4/v4"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
@@ -58,16 +57,14 @@ func DecodeMapping(item []byte) (*StorageMapper, error) {
 var bufPool = sync.Pool{New: func() any { return new(bytes.Buffer) }}
 
 func readResponse(data []byte, req *http.Request) (*http.Response, error) {
-	reader := lz4.NewReader(bytes.NewBuffer(data))
 	buf := bufPool.Get().(*bytes.Buffer)
 
 	defer func() {
-		reader.Reset(buf)
 		buf.Reset()
 		bufPool.Put(buf)
 	}()
 
-	_, _ = reader.WriteTo(buf)
+	_, _ = buf.Write(data)
 
 	bufReader := bufio.NewReader(buf)
 

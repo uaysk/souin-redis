@@ -9,7 +9,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/pierrec/lz4/v4"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
@@ -83,8 +82,7 @@ func MappingElection(provider Storer, item []byte, req *http.Request, validator 
 				response := provider.Get(keyName)
 				if response != nil {
 					bufW := new(bytes.Buffer)
-					reader := lz4.NewReader(bytes.NewBuffer(response))
-					_, _ = reader.WriteTo(bufW)
+					_, _ = bufW.Write(response)
 
 					if resultFresh, e = http.ReadResponse(bufio.NewReader(bufW), req); e != nil {
 						logger.Errorf("An error occurred while reading response for the key %s: %v", keyName, e)
@@ -103,8 +101,7 @@ func MappingElection(provider Storer, item []byte, req *http.Request, validator 
 				response := provider.Get(keyName)
 				if response != nil {
 					bufW := new(bytes.Buffer)
-					reader := lz4.NewReader(bytes.NewBuffer(response))
-					_, _ = reader.WriteTo(bufW)
+					_, _ = bufW.Write(response)
 
 					if resultStale, e = http.ReadResponse(bufio.NewReader(bufW), req); e != nil {
 						logger.Errorf("An error occurred while reading response for the key %s: %v", keyName, e)

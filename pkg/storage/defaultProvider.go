@@ -1,7 +1,6 @@
 package storage
 
 import (
-	"bytes"
 	"net/http"
 	"regexp"
 	"strings"
@@ -9,9 +8,8 @@ import (
 	"time"
 
 	"github.com/uaysk/souin-redis/configurationtypes"
-	"github.com/uaysk/souin-redis/pkg/storage/types"
 	"github.com/darkweak/storages/core"
-	"github.com/pierrec/lz4/v4"
+	"github.com/uaysk/souin-redis/pkg/storage/types"
 )
 
 // Default provider type
@@ -137,16 +135,9 @@ func (provider *Default) GetMultiLevel(key string, req *http.Request, validator 
 func (provider *Default) SetMultiLevel(baseKey, variedKey string, value []byte, variedHeaders http.Header, etag string, duration time.Duration, realKey string) error {
 	now := time.Now()
 
-	var e error
-	compressed := new(bytes.Buffer)
-	if _, e = lz4.NewWriter(compressed).ReadFrom(bytes.NewReader(value)); e != nil {
-		provider.logger.Errorf("Impossible to compress the key %s into Badger, %v", variedKey, e)
-		return e
-	}
-
 	provider.m.Store(variedKey, item{
 		invalidAt: now.Add(duration + provider.stale),
-		value:     compressed.Bytes(),
+		value:     append([]byte(nil), value...),
 	})
 
 	mappingKey := core.MappingKeyPrefix + baseKey
@@ -156,7 +147,7 @@ func (provider *Default) SetMultiLevel(baseKey, variedKey string, value []byte, 
 		val = item.([]byte)
 	}
 
-	val, e = core.MappingUpdater(variedKey, val, provider.logger, now, now.Add(duration), now.Add(duration+provider.stale), variedHeaders, etag, realKey)
+	val, e := core.MappingUpdater(variedKey, val, provider.logger, now, now.Add(duration), now.Add(duration+provider.stale), variedHeaders, etag, realKey)
 	if e != nil {
 		return e
 	}

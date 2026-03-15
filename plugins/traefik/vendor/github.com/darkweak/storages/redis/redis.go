@@ -1,7 +1,6 @@
 package redis
 
 import (
-	"bytes"
 	"context"
 	"encoding/json"
 	"errors"
@@ -11,7 +10,6 @@ import (
 	"time"
 
 	"github.com/darkweak/storages/core"
-	lz4 "github.com/pierrec/lz4/v4"
 	redis "github.com/redis/rueidis"
 )
 
@@ -177,14 +175,7 @@ func (provider *Redis) GetMultiLevel(key string, req *http.Request, validator *c
 func (provider *Redis) SetMultiLevel(baseKey, variedKey string, value []byte, variedHeaders http.Header, etag string, duration time.Duration, realKey string) error {
 	now := time.Now()
 
-	compressed := new(bytes.Buffer)
-	if _, err := lz4.NewWriter(compressed).ReadFrom(bytes.NewReader(value)); err != nil {
-		provider.logger.Errorf("Impossible to compress the key %s into Redis, %v", variedKey, err)
-
-		return err
-	}
-
-	if err := provider.inClient.Do(provider.ctx, provider.inClient.B().Set().Key(provider.hashtags+variedKey).Value(compressed.String()).Ex(duration+provider.stale).Build()).Error(); err != nil {
+	if err := provider.inClient.Do(provider.ctx, provider.inClient.B().Set().Key(provider.hashtags+variedKey).Value(string(value)).Ex(duration+provider.stale).Build()).Error(); err != nil {
 		provider.logger.Errorf("Impossible to set value into Redis, %v", err)
 
 		return err
