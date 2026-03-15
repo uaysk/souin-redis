@@ -252,7 +252,7 @@ func parseConfiguration(c map[string]interface{}) Configuration {
 				case "allowed_additional_status_codes":
 					dc.AllowedAdditionalStatusCodes = parseIntSlice(defaultCacheV)
 				case "stale":
-					stale, err := time.ParseDuration(defaultCacheV.(string))
+					stale, err := time.ParseDuration(cast.ToString(defaultCacheV))
 					if err == nil {
 						dc.Stale = configurationtypes.Duration{Duration: stale}
 					}
@@ -311,7 +311,7 @@ func parseStringSlice(i interface{}) []string {
 	if value, ok := i.([]interface{}); ok {
 		var arr []string
 		for _, v := range value {
-			arr = append(arr, v.(string))
+			arr = append(arr, cast.ToString(v))
 		}
 		return arr
 	}
