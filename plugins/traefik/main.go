@@ -52,7 +52,7 @@ func configCacheKey(keyConfiguration map[string]interface{}) configurationtypes.
 		case "hide":
 			key.Hide = cast.ToBool(keyV)
 		case "template":
-			key.Template = keyV.(string)
+			key.Template = cast.ToString(keyV)
 		}
 	}
 
@@ -62,7 +62,7 @@ func configCacheKey(keyConfiguration map[string]interface{}) configurationtypes.
 func parseProviderConfiguration(providerConfiguration map[string]interface{}) map[string]interface{} {
 	parsed := make(map[string]interface{}, len(providerConfiguration))
 	for key, value := range providerConfiguration {
-		if nested, ok := value.(map[string]interface{}); ok {
+		if nested := asStringMap(value); len(nested) != 0 {
 			parsed[key] = parseProviderConfiguration(nested)
 			continue
 		}
@@ -74,8 +74,8 @@ func parseProviderConfiguration(providerConfiguration map[string]interface{}) ma
 
 func parseCacheProvider(raw interface{}) configurationtypes.CacheProvider {
 	provider := configurationtypes.CacheProvider{}
-	providerConfiguration, ok := raw.(map[string]interface{})
-	if !ok {
+	providerConfiguration := asStringMap(raw)
+	if len(providerConfiguration) == 0 {
 		return provider
 	}
 
@@ -86,13 +86,21 @@ func parseCacheProvider(raw interface{}) configurationtypes.CacheProvider {
 		case "path":
 			provider.Path = cast.ToString(providerValue)
 		case "configuration":
-			if configuration, ok := providerValue.(map[string]interface{}); ok {
+			if configuration := asStringMap(providerValue); len(configuration) != 0 {
 				provider.Configuration = parseProviderConfiguration(configuration)
 			}
 		}
 	}
 
 	return provider
+}
+
+func asStringMap(raw interface{}) map[string]interface{} {
+	if raw == nil {
+		return map[string]interface{}{}
+	}
+
+	return cast.ToStringMap(raw)
 }
 
 func parseConfiguration(c map[string]interface{}) Configuration {
@@ -103,23 +111,23 @@ func parseConfiguration(c map[string]interface{}) Configuration {
 		case "api":
 			var a configurationtypes.API
 			var prometheusConfiguration, souinConfiguration map[string]interface{}
-			apiConfiguration := v.(map[string]interface{})
+			apiConfiguration := cast.ToStringMap(v)
 			for apiK, apiV := range apiConfiguration {
 				switch apiK {
 				case "prometheus":
 					prometheusConfiguration = make(map[string]interface{})
 					if apiV != nil {
-						prometheus, ok := apiV.(map[string]interface{})
-						if ok && len(prometheus) != 0 {
-							prometheusConfiguration = apiV.(map[string]interface{})
+						prometheus := cast.ToStringMap(apiV)
+						if len(prometheus) != 0 {
+							prometheusConfiguration = prometheus
 						}
 					}
 				case "souin":
 					souinConfiguration = make(map[string]interface{})
 					if apiV != nil {
-						souin, ok := apiV.(map[string]interface{})
-						if ok && len(souin) != 0 {
-							souinConfiguration = apiV.(map[string]interface{})
+						souin := cast.ToStringMap(apiV)
+						if len(souin) != 0 {
+							souinConfiguration = souin
 						}
 					}
 				}
@@ -128,25 +136,25 @@ func parseConfiguration(c map[string]interface{}) Configuration {
 				a.Prometheus = configurationtypes.APIEndpoint{}
 				a.Prometheus.Enable = true
 				if prometheusConfiguration["basepath"] != nil {
-					a.Prometheus.BasePath = prometheusConfiguration["basepath"].(string)
+					a.Prometheus.BasePath = cast.ToString(prometheusConfiguration["basepath"])
 				}
 			}
 			if souinConfiguration != nil {
 				a.Souin = configurationtypes.APIEndpoint{}
 				a.Souin.Enable = true
 				if souinConfiguration["basepath"] != nil {
-					a.Souin.BasePath = souinConfiguration["basepath"].(string)
+					a.Souin.BasePath = cast.ToString(souinConfiguration["basepath"])
 				}
 			}
 			configuration.API = a
 		case "cache_keys":
 			cacheKeys := make(configurationtypes.CacheKeys, 0)
-			cacheKeyConfiguration := v.(map[string]interface{})
+			cacheKeyConfiguration := cast.ToStringMap(v)
 			for cacheKeyConfigurationK, cacheKeyConfigurationV := range cacheKeyConfiguration {
 				cacheKeyK := configurationtypes.RegValue{
 					Regexp: regexp.MustCompile(cacheKeyConfigurationK),
 				}
-				cacheKeyV := configCacheKey(cacheKeyConfigurationV.(map[string]interface{}))
+				cacheKeyV := configCacheKey(cast.ToStringMap(cacheKeyConfigurationV))
 				cacheKeys = append(cacheKeys, configurationtypes.CacheKey{
 					cacheKeyK: cacheKeyV,
 				})
@@ -165,68 +173,68 @@ func parseConfiguration(c map[string]interface{}) Configuration {
 				TTL:                 configurationtypes.Duration{},
 				DefaultCacheControl: "",
 			}
-			defaultCache := v.(map[string]interface{})
+			defaultCache := cast.ToStringMap(v)
 			for defaultCacheK, defaultCacheV := range defaultCache {
 				switch defaultCacheK {
 				case "cache_name":
-					dc.CacheName = defaultCacheV.(string)
+					dc.CacheName = cast.ToString(defaultCacheV)
 				case "cdn":
 					cdn := configurationtypes.CDN{
 						Dynamic: true,
 					}
-					cdnConfiguration := defaultCacheV.(map[string]interface{})
+					cdnConfiguration := cast.ToStringMap(defaultCacheV)
 					for cdnK, cdnV := range cdnConfiguration {
 						switch cdnK {
 						case "api_key":
-							cdn.APIKey = cdnV.(string)
+							cdn.APIKey = cast.ToString(cdnV)
 						case "dynamic":
 							cdn.Dynamic = cast.ToBool(cdnV)
 						case "email":
-							cdn.Email = cdnV.(string)
+							cdn.Email = cast.ToString(cdnV)
 						case "hostname":
-							cdn.Hostname = cdnV.(string)
+							cdn.Hostname = cast.ToString(cdnV)
 						case "network":
-							cdn.Network = cdnV.(string)
+							cdn.Network = cast.ToString(cdnV)
 						case "provider":
-							cdn.Provider = cdnV.(string)
+							cdn.Provider = cast.ToString(cdnV)
 						case "service_id":
-							cdn.ServiceID = cdnV.(string)
+							cdn.ServiceID = cast.ToString(cdnV)
 						case "strategy":
-							cdn.Strategy = cdnV.(string)
+							cdn.Strategy = cast.ToString(cdnV)
 						case "zone_id":
-							cdn.ZoneID = cdnV.(string)
+							cdn.ZoneID = cast.ToString(cdnV)
 						}
 					}
 					dc.CDN = cdn
 				case "headers":
 					dc.Headers = parseStringSlice(defaultCacheV)
 				case "key":
-					dc.Key = configCacheKey(defaultCacheV.(map[string]interface{}))
+					dc.Key = configCacheKey(cast.ToStringMap(defaultCacheV))
 				case "mode":
-					dc.Mode = defaultCacheV.(string)
+					dc.Mode = cast.ToString(defaultCacheV)
 				case "redis":
 					dc.Distributed = true
 					dc.Redis = parseCacheProvider(defaultCacheV)
 				case "regex":
-					exclude := defaultCacheV.(map[string]interface{})["exclude"].(string)
+					exclude := cast.ToString(cast.ToStringMap(defaultCacheV)["exclude"])
 					if exclude != "" {
 						dc.Regex = configurationtypes.Regex{Exclude: exclude}
 					}
 				case "timeout":
 					timeout := configurationtypes.Timeout{}
-					timeoutConfiguration := defaultCacheV.(map[string]interface{})
+					timeoutConfiguration := cast.ToStringMap(defaultCacheV)
 					for timeoutK, timeoutV := range timeoutConfiguration {
 						switch timeoutK {
 						case "backend":
 							d := configurationtypes.Duration{}
-							ttl, err := time.ParseDuration(timeoutV.(string))
+							ttl, err := time.ParseDuration(cast.ToString(timeoutV))
 							if err == nil {
 								d.Duration = ttl
 							}
 							timeout.Backend = d
 						case "cache":
 							d := configurationtypes.Duration{}
-							ttl, err := time.ParseDuration(timeoutV.(string))
+							ttl, err := time.ParseDuration(cast.ToString(timeoutV))
 							if err == nil {
 								d.Duration = ttl
 							}
@@ -235,7 +243,7 @@ func parseConfiguration(c map[string]interface{}) Configuration {
 					}
 					dc.Timeout = timeout
 				case "ttl":
-					ttl, err := time.ParseDuration(defaultCacheV.(string))
+					ttl, err := time.ParseDuration(cast.ToString(defaultCacheV))
 					if err == nil {
 						dc.TTL = configurationtypes.Duration{Duration: ttl}
 					}
@@ -251,32 +259,32 @@ func parseConfiguration(c map[string]interface{}) Configuration {
 				case "storers":
 					dc.Storers = parseStringSlice(defaultCacheV)
 				case "default_cache_control":
-					dc.DefaultCacheControl = defaultCacheV.(string)
+					dc.DefaultCacheControl = cast.ToString(defaultCacheV)
 				case "max_cachable_body_bytes":
 					dc.MaxBodyBytes = parseUint64(defaultCacheV)
 				}
 			}
 			configuration.DefaultCache = &dc
 		case "log_level":
-			configuration.LogLevel = v.(string)
+			configuration.LogLevel = cast.ToString(v)
 		case "urls":
 			u := make(map[string]configurationtypes.URL)
-			urls := v.(map[string]interface{})
+			urls := cast.ToStringMap(v)
 
 			for urlK, urlV := range urls {
 				currentURL := configurationtypes.URL{
 					TTL:     configurationtypes.Duration{},
 					Headers: nil,
 				}
-				currentValue := urlV.(map[string]interface{})
+				currentValue := cast.ToStringMap(urlV)
 				currentURL.Headers = parseStringSlice(currentValue["headers"])
-				d := currentValue["ttl"].(string)
+				d := cast.ToString(currentValue["ttl"])
 				ttl, err := time.ParseDuration(d)
 				if err == nil {
 					currentURL.TTL = configurationtypes.Duration{Duration: ttl}
 				}
 				if _, exists := currentValue["default_cache_control"]; exists {
-					currentURL.DefaultCacheControl = currentValue["default_cache_control"].(string)
+					currentURL.DefaultCacheControl = cast.ToString(currentValue["default_cache_control"])
 				}
 				u[urlK] = currentURL
 			}
@@ -287,7 +295,7 @@ func parseConfiguration(c map[string]interface{}) Configuration {
 			_ = json.Unmarshal(d, &ykeys)
 			configuration.Ykeys = ykeys
 		case "disable_surrogate_key":
-			configuration.SurrogateKeyDisabled = v.(bool)
+			configuration.SurrogateKeyDisabled = cast.ToBool(v)
 		}
 	}
 
