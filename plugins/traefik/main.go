@@ -253,7 +253,7 @@ func parseConfiguration(c map[string]interface{}) Configuration {
 				case "default_cache_control":
 					dc.DefaultCacheControl = defaultCacheV.(string)
 				case "max_cachable_body_bytes":
-					dc.MaxBodyBytes, _ = defaultCacheV.(uint64)
+					dc.MaxBodyBytes = parseUint64(defaultCacheV)
 				}
 			}
 			configuration.DefaultCache = &dc
@@ -329,12 +329,70 @@ func parseIntSlice(i interface{}) []int {
 	if value, ok := i.([]interface{}); ok {
 		var arr []int
 		for _, v := range value {
-			arr = append(arr, v.(int))
+			arr = append(arr, parseIntValue(v))
 		}
 		return arr
 	}
 
 	return nil
+}
+
+func parseIntValue(i interface{}) int {
+	switch value := i.(type) {
+	case int:
+		return value
+	case int8:
+		return int(value)
+	case int16:
+		return int(value)
+	case int32:
+		return int(value)
+	case int64:
+		return int(value)
+	case uint:
+		return int(value)
+	case uint8:
+		return int(value)
+	case uint16:
+		return int(value)
+	case uint32:
+		return int(value)
+	case uint64:
+		return int(value)
+	case float32:
+		return int(value)
+	case float64:
+		return int(value)
+	default:
+		return cast.ToInt(i)
+	}
+}
+
+func parseUint64(i interface{}) uint64 {
+	switch value := i.(type) {
+	case uint64:
+		return value
+	case uint:
+		return uint64(value)
+	case uint32:
+		return uint64(value)
+	case uint16:
+		return uint64(value)
+	case uint8:
+		return uint64(value)
+	case int:
+		return uint64(value)
+	case int64:
+		return uint64(value)
+	case int32:
+		return uint64(value)
+	case float64:
+		return uint64(value)
+	case float32:
+		return uint64(value)
+	default:
+		return cast.ToUint64(i)
+	}
 }
 
 // New create Souin instance.
