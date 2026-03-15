@@ -3,7 +3,7 @@ package main
 import (
 	_ "github.com/beego/beego/v2/core/config/json"
 	"github.com/beego/beego/v2/server/web"
-	httpcache "github.com/darkweak/souin/plugins/beego"
+	httpcache "github.com/uaysk/souin-redis/plugins/beego"
 )
 
 type mainController struct {

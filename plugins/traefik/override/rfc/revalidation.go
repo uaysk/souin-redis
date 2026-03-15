@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/darkweak/souin/pkg/storage/types"
+	"github.com/uaysk/souin-redis/pkg/storage/types"
 )
 
 func ValidateETagFromHeader(etag string, validator *types.Revalidator) {

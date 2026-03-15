@@ -1,10 +1,10 @@
-module github.com/darkweak/souin/plugins/caddy
+module github.com/uaysk/souin-redis/plugins/caddy
 
 go 1.25
 
 require (
 	github.com/caddyserver/caddy/v2 v2.10.2
-	github.com/darkweak/souin v1.7.8
+	github.com/uaysk/souin-redis v1.7.8
 	github.com/darkweak/storages/core v0.0.18
 )
 
@@ -163,4 +163,4 @@ require (
 	howett.net/plist v1.0.1 // indirect
 )
 
-replace github.com/darkweak/souin v1.7.8 => ../..
+replace github.com/uaysk/souin-redis v1.7.8 => ../..

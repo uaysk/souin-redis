@@ -57,4 +57,4 @@ With that your application will be able to cache the responses if possible and r
 
 Other resources
 ---------------
-You can find an example for a docker-compose stack inside the [`examples` folder on the Github repository](https://github.com/darkweak/souin/tree/master/plugins/roadrunner/examples).
+You can find an example for a docker-compose stack inside the [`examples` folder on the Github repository](https://github.com/uaysk/souin-redis/tree/master/plugins/roadrunner/examples).

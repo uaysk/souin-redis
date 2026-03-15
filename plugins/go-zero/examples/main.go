@@ -3,10 +3,10 @@ package main
 import (
 	"flag"
 
-	cache "github.com/darkweak/souin/plugins/go-zero"
-	"github.com/darkweak/souin/plugins/go-zero/examples/internal/config"
-	"github.com/darkweak/souin/plugins/go-zero/examples/internal/handler"
-	"github.com/darkweak/souin/plugins/go-zero/examples/internal/svc"
+	cache "github.com/uaysk/souin-redis/plugins/go-zero"
+	"github.com/uaysk/souin-redis/plugins/go-zero/examples/internal/config"
+	"github.com/uaysk/souin-redis/plugins/go-zero/examples/internal/handler"
+	"github.com/uaysk/souin-redis/plugins/go-zero/examples/internal/svc"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/rest"

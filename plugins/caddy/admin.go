@@ -7,8 +7,8 @@ import (
 	"time"
 
 	"github.com/caddyserver/caddy/v2"
-	"github.com/darkweak/souin/configurationtypes"
-	"github.com/darkweak/souin/pkg/api"
+	"github.com/uaysk/souin-redis/configurationtypes"
+	"github.com/uaysk/souin-redis/pkg/api"
 
 	"github.com/darkweak/storages/core"
 )

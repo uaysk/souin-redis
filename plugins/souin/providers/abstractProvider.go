@@ -9,7 +9,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/darkweak/souin/plugins/souin/configuration"
+	"github.com/uaysk/souin-redis/plugins/souin/configuration"
 
 	"github.com/fsnotify/fsnotify"
 )

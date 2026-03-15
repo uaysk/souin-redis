@@ -6,7 +6,7 @@ import (
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
-	httpcache "github.com/darkweak/souin/plugins/hertz"
+	httpcache "github.com/uaysk/souin-redis/plugins/hertz"
 )
 
 func main() {

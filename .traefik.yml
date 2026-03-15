@@ -1,7 +1,7 @@
 displayName: Souin
 type: middleware
-import: github.com/darkweak/souin/plugins/traefik
-summary: 'Souin is a powerfull cache system as fast as Varnish but easier to configure'
+import: github.com/uaysk/souin-redis/plugins/traefik
+summary: 'Souin with Redis-backed storage support for Traefik'
 
 # Refer to https://github.com/darkweak/Souin/blob/master/configuration/configuration.sample.yml for full configuration
 testData:
@@ -12,6 +12,11 @@ testData:
     headers:
       - Authorization
       - Content-Type
+    redis:
+      configuration:
+        InitAddress:
+          - redis.redis.svc.cluster.local:6379
+        ClientName: souin-traefik
     regex:
       exclude: 'ARegexHere'
     ttl: 10s

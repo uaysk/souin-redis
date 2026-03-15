@@ -5,10 +5,10 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/darkweak/souin/configurationtypes"
-	"github.com/darkweak/souin/pkg/middleware"
-	"github.com/darkweak/souin/plugins/souin/agnostic"
-	"github.com/darkweak/souin/plugins/souin/storages"
+	"github.com/uaysk/souin-redis/configurationtypes"
+	"github.com/uaysk/souin-redis/pkg/middleware"
+	"github.com/uaysk/souin-redis/plugins/souin/agnostic"
+	"github.com/uaysk/souin-redis/plugins/souin/storages"
 
 	"github.com/beego/beego/v2/server/web"
 	beegoCtx "github.com/beego/beego/v2/server/web/context"

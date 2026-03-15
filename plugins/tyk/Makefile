@@ -14,12 +14,12 @@ prepare: vendor ## Prepare tyk plugin
 
 # TODO find another way to do that
 replace: ## Replace sources in the vendor folder deeper than the go mod replace
-	rm -rf vendor/github.com/darkweak/souin/pkg/storage && scp -r override/storage vendor/github.com/darkweak/souin/pkg
-	rm -rf vendor/github.com/darkweak/souin/pkg/api && scp -r override/api vendor/github.com/darkweak/souin/pkg
+	rm -rf vendor/github.com/uaysk/souin-redis/pkg/storage && scp -r override/storage vendor/github.com/uaysk/souin-redis/pkg
+	rm -rf vendor/github.com/uaysk/souin-redis/pkg/api && scp -r override/api vendor/github.com/uaysk/souin-redis/pkg
 	rm -rf vendor/github.com/darkweak/go-esi
-	scp override/middleware/middleware.go vendor/github.com/darkweak/souin/pkg/middleware/middleware.go
-	scp override/middleware/writer.go vendor/github.com/darkweak/souin/pkg/middleware/writer.go
-	scp override/rfc/vary.go vendor/github.com/darkweak/souin/pkg/rfc/vary.go
+	scp override/middleware/middleware.go vendor/github.com/uaysk/souin-redis/pkg/middleware/middleware.go
+	scp override/middleware/writer.go vendor/github.com/uaysk/souin-redis/pkg/middleware/writer.go
+	scp override/rfc/vary.go vendor/github.com/uaysk/souin-redis/pkg/rfc/vary.go
 
 vendor: ## Generate vendors for the plugin
 	go mod tidy

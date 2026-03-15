@@ -57,7 +57,7 @@ reverse_proxy_url: 'http://traefik' # If it's in the same network you can use ht
 ## From source
 If you want to run the Souin standalone server from sources, you should clone the Souin repository and run the golang standalone server.
 ```bash
-git clone https://github.com/darkweak/souin
+git clone https://github.com/uaysk/souin-redis
 cd souin/plugins/souin
 ```
 

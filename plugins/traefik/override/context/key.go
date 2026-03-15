@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"regexp"
 
-	"github.com/darkweak/souin/configurationtypes"
+	"github.com/uaysk/souin-redis/configurationtypes"
 )
 
 const (

@@ -1,8 +1,8 @@
 package roadrunner
 
 import (
-	"github.com/darkweak/souin/pkg/middleware"
-	"github.com/darkweak/souin/plugins/souin/agnostic"
+	"github.com/uaysk/souin-redis/pkg/middleware"
+	"github.com/uaysk/souin-redis/plugins/souin/agnostic"
 )
 
 const (

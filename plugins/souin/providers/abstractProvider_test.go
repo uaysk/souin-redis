@@ -5,8 +5,8 @@ import (
 	"log"
 	"testing"
 
-	"github.com/darkweak/souin/plugins/souin/configuration"
-	"github.com/darkweak/souin/tests"
+	"github.com/uaysk/souin-redis/plugins/souin/configuration"
+	"github.com/uaysk/souin-redis/tests"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"gopkg.in/yaml.v3"

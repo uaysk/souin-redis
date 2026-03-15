@@ -1,7 +1,7 @@
 Echo middleware: Souin
 ================================
 
-This is a distributed HTTP cache module for Echo based on [Souin](https://github.com/darkweak/souin) cache.  
+This is a distributed HTTP cache module for Echo based on [Souin](https://github.com/uaysk/souin-redis) cache.  
 
 ## Features
 
@@ -18,7 +18,7 @@ There is the example about the Souin initialization.
 import (
 	"net/http"
 
-	souin_echo "github.com/darkweak/souin/plugins/echo"
+	souin_echo "github.com/uaysk/souin-redis/plugins/echo"
 	"github.com/labstack/echo/v4"
 )
 
@@ -33,9 +33,9 @@ func main(){
 ```
 With that your application will be able to cache the responses if possible and returns at least the `Cache-Status` HTTP header with the different directives mentionned in the RFC specification.  
 You have to pass an Echo `Configuration` structure into the `NewMiddleware` method (you can use the `DefaultConfiguration` variable to have a built-in production ready configuration).  
-See the full detailled configuration names [here](https://github.com/darkweak/souin#optional-configuration).
+See the full detailled configuration names [here](https://github.com/uaysk/souin-redis#optional-configuration).
 
 Other resources
 ---------------
 You can find an example for a docker-compose stack inside the `examples` folder.  
-See the [Souin](https://github.com/darkweak/souin) configuration for the full configuration, and its associated [development echo middleware](https://github.com/darkweak/souin/blob/master/plugins/echo)  
+See the [Souin](https://github.com/uaysk/souin-redis) configuration for the full configuration, and its associated [development echo middleware](https://github.com/uaysk/souin-redis/blob/master/plugins/echo)  

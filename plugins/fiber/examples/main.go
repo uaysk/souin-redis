@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	cache "github.com/darkweak/souin/plugins/fiber"
+	cache "github.com/uaysk/souin-redis/plugins/fiber"
 	"github.com/gofiber/fiber/v2"
 )
 

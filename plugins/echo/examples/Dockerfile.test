@@ -6,11 +6,11 @@ RUN apk update && apk upgrade && \
     apk add --no-cache bash git openssh gcc libc-dev binutils-gold
 
 ENV GOPATH /app
-RUN mkdir -p /app/src/github.com/darkweak/souin
-WORKDIR /app/src/github.com/darkweak/souin
+RUN mkdir -p /app/src/github.com/uaysk/souin-redis
+WORKDIR /app/src/github.com/uaysk/souin-redis
 COPY . .
 
-WORKDIR /app/src/github.com/darkweak/souin/plugins/echo
+WORKDIR /app/src/github.com/uaysk/souin-redis/plugins/echo
 RUN go mod tidy
 RUN go mod download
 

@@ -7,9 +7,9 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/darkweak/souin/configurationtypes"
-	"github.com/darkweak/souin/pkg/storage"
-	"github.com/darkweak/souin/tests"
+	"github.com/uaysk/souin-redis/configurationtypes"
+	"github.com/uaysk/souin-redis/pkg/storage"
+	"github.com/uaysk/souin-redis/tests"
 	"github.com/darkweak/storages/core"
 	"go.uber.org/zap"
 )

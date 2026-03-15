@@ -1,0 +1,47 @@
+package rfc
+
+import (
+	"fmt"
+	"net/http"
+	"net/url"
+	"slices"
+	"strings"
+
+	"github.com/darkweak/storages/core"
+)
+
+const (
+	VarySeparator          = "{-VARY-}"
+	DecodedHeaderSeparator = ";"
+)
+
+// GetVariedCacheKey returns the varied cache key for req and resp.
+func GetVariedCacheKey(rq *http.Request, headers []string) string {
+	isVaryDisabled := rq.Context().Value(core.DISABLE_VARY_CTX)
+	if isVaryDisabled != nil && isVaryDisabled.(bool) {
+		return ""
+	}
+
+	if len(headers) == 0 {
+		return ""
+	}
+	for i, v := range headers {
+		h := strings.TrimSpace(rq.Header.Get(v))
+		if strings.Contains(h, ";") || strings.Contains(h, ":") {
+			h = url.QueryEscape(h)
+		}
+		headers[i] = fmt.Sprintf("%s:%s", v, h)
+	}
+
+	return VarySeparator + strings.Join(headers, DecodedHeaderSeparator)
+}
+
+// VariedHeaderAllCommaSepValues returns all comma-separated values
+// or '*' alone when the header contains it.
+func VariedHeaderAllCommaSepValues(headers http.Header) ([]string, bool) {
+	vals := HeaderAllCommaSepValues(headers, "Vary")
+	if slices.Contains(vals, "*") {
+		return []string{"*"}, true
+	}
+	return vals, false
+}

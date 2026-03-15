@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
 
-	cache "github.com/darkweak/souin/plugins/goyave"
+	cache "github.com/uaysk/souin-redis/plugins/goyave"
 	"goyave.dev/goyave/v4"
 	"goyave.dev/goyave/v4/config"
 )

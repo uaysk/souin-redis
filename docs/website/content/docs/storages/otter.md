@@ -16,7 +16,7 @@ Otter is a high performance lockless cache for Go. Many times faster than Ristre
 ### With Caddy
 You have to build your caddy instance including `Souin` and `Otter` using `xcaddy` ([refer to the build caddy section]({{% relref "/docs/middlewares/caddy#build-your-caddy-binary" %}})).
 ```shell
-xcaddy build --with github.com/darkweak/souin/plugins/caddy --with github.com/darkweak/storages/otter/caddy
+xcaddy build --with github.com/uaysk/souin-redis/plugins/caddy --with github.com/darkweak/storages/otter/caddy
 ```
 You will be able to use otter in your Caddyfile or JSON configuration file.
 ```caddyfile

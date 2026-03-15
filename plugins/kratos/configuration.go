@@ -4,8 +4,8 @@ import (
 	"regexp"
 	"time"
 
-	"github.com/darkweak/souin/configurationtypes"
-	"github.com/darkweak/souin/pkg/middleware"
+	"github.com/uaysk/souin-redis/configurationtypes"
+	"github.com/uaysk/souin-redis/pkg/middleware"
 	"github.com/go-kratos/kratos/v2/config"
 )
 

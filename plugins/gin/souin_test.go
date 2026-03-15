@@ -5,7 +5,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/darkweak/souin/pkg/middleware"
+	"github.com/uaysk/souin-redis/pkg/middleware"
 	"github.com/gin-gonic/gin"
 )
 

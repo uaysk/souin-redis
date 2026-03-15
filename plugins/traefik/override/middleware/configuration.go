@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"github.com/darkweak/souin/configurationtypes"
+	"github.com/uaysk/souin-redis/configurationtypes"
 )
 
 // BaseConfiguration holder

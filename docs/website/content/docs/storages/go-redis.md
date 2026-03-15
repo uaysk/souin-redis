@@ -20,7 +20,7 @@ Redis is often referred to as a data structures server. What this means is that 
 ### With Caddy
 You have to build your caddy instance including `Souin` and `Go-redis` using `xcaddy` ([refer to the build caddy section]({{% relref "/docs/middlewares/caddy#build-your-caddy-binary" %}})).
 ```shell
-xcaddy build --with github.com/darkweak/souin/plugins/caddy --with github.com/darkweak/storages/go-redis/caddy
+xcaddy build --with github.com/uaysk/souin-redis/plugins/caddy --with github.com/darkweak/storages/go-redis/caddy
 ```
 You will be able to use redis in your Caddyfile or JSON configuration file.
 ```caddyfile

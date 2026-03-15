@@ -18,7 +18,7 @@ It supports fully serializable transactions and many data structures such as lis
 ### With Caddy
 You have to build your caddy instance including `Souin` and `Nuts` using `xcaddy` ([refer to the build caddy section]({{% relref "/docs/middlewares/caddy#build-your-caddy-binary" %}})).
 ```shell
-xcaddy build --with github.com/darkweak/souin/plugins/caddy --with github.com/darkweak/storages/nuts/caddy
+xcaddy build --with github.com/uaysk/souin-redis/plugins/caddy --with github.com/darkweak/storages/nuts/caddy
 ```
 You will be able to use nuts in your Caddyfile or JSON configuration file.
 ```caddyfile

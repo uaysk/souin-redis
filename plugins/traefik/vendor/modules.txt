@@ -94,23 +94,12 @@ github.com/cpuguy83/go-md2man/v2/md2man
 # github.com/darkweak/go-esi v0.0.5
 ## explicit; go 1.18
 github.com/darkweak/go-esi/esi
-# github.com/darkweak/souin v1.7.8 => ../..
-## explicit; go 1.25
-github.com/darkweak/souin/configurationtypes
-github.com/darkweak/souin/context
-github.com/darkweak/souin/helpers
-github.com/darkweak/souin/pkg/api
-github.com/darkweak/souin/pkg/api/debug
-github.com/darkweak/souin/pkg/api/prometheus
-github.com/darkweak/souin/pkg/middleware
-github.com/darkweak/souin/pkg/rfc
-github.com/darkweak/souin/pkg/storage
-github.com/darkweak/souin/pkg/storage/types
-github.com/darkweak/souin/pkg/surrogate
-github.com/darkweak/souin/pkg/surrogate/providers
 # github.com/darkweak/storages/core v0.0.18
 ## explicit; go 1.22.1
 github.com/darkweak/storages/core
+# github.com/darkweak/storages/redis v0.0.13
+## explicit; go 1.22.1
+github.com/darkweak/storages/redis
 # github.com/dgraph-io/badger v1.6.2
 ## explicit; go 1.12
 github.com/dgraph-io/badger
@@ -362,6 +351,11 @@ github.com/quic-go/quic-go/internal/wire
 github.com/quic-go/quic-go/logging
 github.com/quic-go/quic-go/qlog
 github.com/quic-go/quic-go/quicvarint
+# github.com/redis/rueidis v1.0.54
+## explicit; go 1.22.0
+github.com/redis/rueidis
+github.com/redis/rueidis/internal/cmds
+github.com/redis/rueidis/internal/util
 # github.com/rs/xid v1.5.0
 ## explicit; go 1.12
 github.com/rs/xid
@@ -437,6 +431,20 @@ github.com/stoewer/go-strcase
 github.com/tailscale/tscert
 github.com/tailscale/tscert/internal/paths
 github.com/tailscale/tscert/internal/safesocket
+# github.com/uaysk/souin-redis v1.7.8 => ../..
+## explicit; go 1.24.5
+github.com/uaysk/souin-redis/configurationtypes
+github.com/uaysk/souin-redis/context
+github.com/uaysk/souin-redis/helpers
+github.com/uaysk/souin-redis/pkg/api
+github.com/uaysk/souin-redis/pkg/api/debug
+github.com/uaysk/souin-redis/pkg/api/prometheus
+github.com/uaysk/souin-redis/pkg/middleware
+github.com/uaysk/souin-redis/pkg/rfc
+github.com/uaysk/souin-redis/pkg/storage
+github.com/uaysk/souin-redis/pkg/storage/types
+github.com/uaysk/souin-redis/pkg/surrogate
+github.com/uaysk/souin-redis/pkg/surrogate/providers
 # github.com/urfave/cli v1.22.14
 ## explicit; go 1.11
 github.com/urfave/cli

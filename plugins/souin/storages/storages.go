@@ -3,7 +3,7 @@ package storages
 import (
 	"time"
 
-	"github.com/darkweak/souin/configurationtypes"
+	"github.com/uaysk/souin-redis/configurationtypes"
 	"github.com/darkweak/storages/badger"
 	"github.com/darkweak/storages/core"
 	"github.com/darkweak/storages/etcd"

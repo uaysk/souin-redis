@@ -63,8 +63,8 @@ build-caddy: ## Build caddy binary
 	go mod tidy && \
 	go mod download && \
 	XCADDY_RACE_DETECTOR=1 XCADDY_DEBUG=1 xcaddy build \
-		--with github.com/darkweak/souin/plugins/caddy=./ \
-		--with github.com/darkweak/souin=../.. \
+		--with github.com/uaysk/souin-redis/plugins/caddy=./ \
+		--with github.com/uaysk/souin-redis=../.. \
 		--with github.com/darkweak/storages/badger/caddy \
 		--with github.com/darkweak/storages/etcd/caddy \
 		--with github.com/darkweak/storages/nats/caddy \
@@ -78,8 +78,8 @@ build-caddy-dev: ## Build caddy binary
 	go mod tidy && \
 	go mod download && \
 	XCADDY_RACE_DETECTOR=1 XCADDY_DEBUG=1 xcaddy build \
-		--with github.com/darkweak/souin/plugins/caddy=./ \
-		--with github.com/darkweak/souin=../.. \
+		--with github.com/uaysk/souin-redis/plugins/caddy=./ \
+		--with github.com/uaysk/souin-redis=../.. \
 		--with github.com/darkweak/storages/badger/caddy=../../../storages/badger/caddy \
 		--with github.com/darkweak/storages/etcd/caddy=../../../storages/etcd/caddy \
 		--with github.com/darkweak/storages/nuts/caddy=../../../storages/nuts/caddy \

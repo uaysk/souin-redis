@@ -1,10 +1,10 @@
-module github.com/darkweak/souin/plugins/dotweb
+module github.com/uaysk/souin-redis/plugins/dotweb
 
 go 1.25
 
 require (
-	github.com/darkweak/souin v1.7.8
-	github.com/darkweak/souin/plugins/souin/storages v1.7.8
+	github.com/uaysk/souin-redis v1.7.8
+	github.com/uaysk/souin-redis/plugins/souin/storages v1.7.8
 	github.com/devfeel/dotweb v1.7.21
 )
 
@@ -199,6 +199,6 @@ require (
 )
 
 replace (
-	github.com/darkweak/souin v1.7.8 => ../..
-	github.com/darkweak/souin/plugins/souin/storages => ../souin/storages
+	github.com/uaysk/souin-redis v1.7.8 => ../..
+	github.com/uaysk/souin-redis/plugins/souin/storages => ../souin/storages
 )

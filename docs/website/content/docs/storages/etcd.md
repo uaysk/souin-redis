@@ -22,7 +22,7 @@ etcd is written in Go and uses the Raft consensus algorithm to manage a highly-a
 ### With Caddy
 You have to build your caddy instance including `Souin` and `Etcd` using `xcaddy` ([refer to the build caddy section]({{% relref "/docs/middlewares/caddy#build-your-caddy-binary" %}})).
 ```shell
-xcaddy build --with github.com/darkweak/souin/plugins/caddy --with github.com/darkweak/storages/etcd/caddy
+xcaddy build --with github.com/uaysk/souin-redis/plugins/caddy --with github.com/darkweak/storages/etcd/caddy
 ```
 You will be able to use etcd in your Caddyfile or JSON configuration file.
 ```caddyfile

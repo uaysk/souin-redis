@@ -6,21 +6,21 @@ RUN apk update && apk upgrade && \
     apk add --no-cache bash git openssh gcc libc-dev
 ENV GOPATH /app
 
-RUN mkdir -p /app/src/github.com/darkweak/souin
-WORKDIR /app/src/github.com/darkweak/souin
-ADD ./go.* /app/src/github.com/darkweak/souin/
+RUN mkdir -p /app/src/github.com/uaysk/souin-redis
+WORKDIR /app/src/github.com/uaysk/souin-redis
+ADD ./go.* /app/src/github.com/uaysk/souin-redis/
 RUN go mod download
 RUN go get golang.org/x/lint/golint
 RUN mkdir -p /ssl
-ADD ./context /app/src/github.com/darkweak/souin/context
-ADD ./pkg /app/src/github.com/darkweak/souin/pkg
-ADD ./tests /app/src/github.com/darkweak/souin/tests
-ADD ./configuration /app/src/github.com/darkweak/souin/configuration
-ADD ./configurationtypes /app/src/github.com/darkweak/souin/configurationtypes
-ADD ./helpers /app/src/github.com/darkweak/souin/helpers
-ADD ./plugins /app/src/github.com/darkweak/souin/plugins
+ADD ./context /app/src/github.com/uaysk/souin-redis/context
+ADD ./pkg /app/src/github.com/uaysk/souin-redis/pkg
+ADD ./tests /app/src/github.com/uaysk/souin-redis/tests
+ADD ./configuration /app/src/github.com/uaysk/souin-redis/configuration
+ADD ./configurationtypes /app/src/github.com/uaysk/souin-redis/configurationtypes
+ADD ./helpers /app/src/github.com/uaysk/souin-redis/helpers
+ADD ./plugins /app/src/github.com/uaysk/souin-redis/plugins
 
-WORKDIR /app/src/github.com/darkweak/souin
+WORKDIR /app/src/github.com/uaysk/souin-redis
 
 EXPOSE 80
 

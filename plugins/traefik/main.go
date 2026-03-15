@@ -10,8 +10,8 @@ import (
 
 	"github.com/spf13/cast"
 
-	"github.com/darkweak/souin/configurationtypes"
-	"github.com/darkweak/souin/pkg/middleware"
+	"github.com/uaysk/souin-redis/configurationtypes"
+	"github.com/uaysk/souin-redis/pkg/middleware"
 )
 
 // SouinTraefikMiddleware declaration.
@@ -57,6 +57,42 @@ func configCacheKey(keyConfiguration map[string]interface{}) configurationtypes.
 	}
 
 	return key
+}
+
+func parseProviderConfiguration(providerConfiguration map[string]interface{}) map[string]interface{} {
+	parsed := make(map[string]interface{}, len(providerConfiguration))
+	for key, value := range providerConfiguration {
+		if nested, ok := value.(map[string]interface{}); ok {
+			parsed[key] = parseProviderConfiguration(nested)
+			continue
+		}
+		parsed[key] = value
+	}
+
+	return parsed
+}
+
+func parseCacheProvider(raw interface{}) configurationtypes.CacheProvider {
+	provider := configurationtypes.CacheProvider{}
+	providerConfiguration, ok := raw.(map[string]interface{})
+	if !ok {
+		return provider
+	}
+
+	for providerKey, providerValue := range providerConfiguration {
+		switch providerKey {
+		case "url":
+			provider.URL = cast.ToString(providerValue)
+		case "path":
+			provider.Path = cast.ToString(providerValue)
+		case "configuration":
+			if configuration, ok := providerValue.(map[string]interface{}); ok {
+				provider.Configuration = parseProviderConfiguration(configuration)
+			}
+		}
+	}
+
+	return provider
 }
 
 func parseConfiguration(c map[string]interface{}) Configuration {
@@ -168,6 +204,9 @@ func parseConfiguration(c map[string]interface{}) Configuration {
 					dc.Key = configCacheKey(defaultCacheV.(map[string]interface{}))
 				case "mode":
 					dc.Mode = defaultCacheV.(string)
+				case "redis":
+					dc.Distributed = true
+					dc.Redis = parseCacheProvider(defaultCacheV)
 				case "regex":
 					exclude := defaultCacheV.(map[string]interface{})["exclude"].(string)
 					if exclude != "" {
@@ -301,6 +340,7 @@ func parseIntSlice(i interface{}) []int {
 // New create Souin instance.
 func New(_ context.Context, next http.Handler, config *TestConfiguration, name string) (http.Handler, error) {
 	c := parseConfiguration(*config)
+	initRedisStorage(&c)
 
 	return &SouinTraefikMiddleware{
 		name:             name,

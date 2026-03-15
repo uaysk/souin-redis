@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/darkweak/souin/pkg/middleware"
+	"github.com/uaysk/souin-redis/pkg/middleware"
 	"github.com/go-chi/chi/v5"
 )
 

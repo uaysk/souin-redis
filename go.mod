@@ -1,6 +1,6 @@
-module github.com/darkweak/souin
+module github.com/uaysk/souin-redis
 
-go 1.25
+go 1.24.5
 
 require (
 	github.com/caddyserver/caddy/v2 v2.10.0

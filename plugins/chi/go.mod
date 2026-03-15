@@ -1,10 +1,10 @@
-module github.com/darkweak/souin/plugins/chi
+module github.com/uaysk/souin-redis/plugins/chi
 
 go 1.25
 
 require (
-	github.com/darkweak/souin v1.7.8
-	github.com/darkweak/souin/plugins/souin/storages v1.7.8
+	github.com/uaysk/souin-redis v1.7.8
+	github.com/uaysk/souin-redis/plugins/souin/storages v1.7.8
 	github.com/go-chi/chi/v5 v5.2.3
 )
 
@@ -198,6 +198,6 @@ require (
 )
 
 replace (
-	github.com/darkweak/souin v1.7.8 => ../..
-	github.com/darkweak/souin/plugins/souin/storages => ../souin/storages
+	github.com/uaysk/souin-redis v1.7.8 => ../..
+	github.com/uaysk/souin-redis/plugins/souin/storages => ../souin/storages
 )

@@ -8,7 +8,7 @@ tags = ["Beginners", "Advanced"]
 
 ## Disclaimer
 {{% alert icon=" " %}}
-`github.com/darkweak/souin/plugin/caddy` and `github.com/caddyserver/cache-handler` are mainly the same but the `souin/plugin/caddy` is the development repository and the `cache-handler` is the stable version. They both contain the features and suport the configuration below but on the Souin repository you'll get access to new features/RFCs at early stage with faster bug fixes.
+`github.com/uaysk/souin-redis/plugin/caddy` and `github.com/caddyserver/cache-handler` are mainly the same but the `souin/plugin/caddy` is the development repository and the `cache-handler` is the stable version. They both contain the features and suport the configuration below but on the Souin repository you'll get access to new features/RFCs at early stage with faster bug fixes.
 {{% /alert %}}
 
 ## Usage
@@ -17,7 +17,7 @@ tags = ["Beginners", "Advanced"]
 We assume that you already installed the `xcaddy` binary on your device. If not, you can refer to the [documentation here](https://github.com/caddyserver/xcaddy#install)
 
 ```shell
-xcaddy build --with github.com/darkweak/souin/plugins/caddy
+xcaddy build --with github.com/uaysk/souin-redis/plugins/caddy
 ```
 
 You should get a new `caddy` executable file in your current directory.
@@ -86,7 +86,7 @@ If we go on [https://localhost:2019/souin-api/debug/](https://localhost/souin-ap
 Since `v1.7.0` Souin implements only an in-memory storage, if you need a specific storage you have to take it from [the storages repository](https://github.com/darkweak/storages) and add to your build command.  
 (e.g. with otter using caddy) You have to build your caddy module with the desired storage 
 ```shell
-xcaddy build --with github.com/darkweak/souin/plugins/caddy --with github.com/darkweak/storages/otter/caddy
+xcaddy build --with github.com/uaysk/souin-redis/plugins/caddy --with github.com/darkweak/storages/otter/caddy
 ```
 and configure otter in your Caddyfile/JSON configuration file.  
 See the [storages page]({{% relref "/docs/storages" %}}) to learn more about each supported storage.
@@ -95,14 +95,14 @@ See the [storages page]({{% relref "/docs/storages" %}}) to learn more about eac
 First you have to build Caddy with Souin and a storage using the following template.
 ```
 xcaddy build \
-    --with github.com/darkweak/souin/plugins/caddy \
+    --with github.com/uaysk/souin-redis/plugins/caddy \
     --with github.com/darkweak/storages/{your_storage_name}/caddy
 ```
 
 You can also use as many storages you want.
 ```
 xcaddy build \
-    --with github.com/darkweak/souin/plugins/caddy \
+    --with github.com/uaysk/souin-redis/plugins/caddy \
     --with github.com/darkweak/storages/redis/caddy \
     --with github.com/darkweak/storages/nuts/caddy \
     --with github.com/darkweak/storages/otter/caddy

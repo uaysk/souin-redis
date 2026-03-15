@@ -5,7 +5,7 @@ services:
     image: traefik:v3.1
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ../..:/plugins-local/src/github.com/darkweak/souin
+      - ../..:/plugins-local/src/github.com/uaysk/souin-redis
       - ./traefik.yml:/traefik.yml
       - ./souin-configuration.yaml:/souin-configuration.yaml
     environment:

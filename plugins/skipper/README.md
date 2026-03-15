@@ -1,7 +1,7 @@
 Skipper middleware: Souin
 ================================
 
-This is a distributed HTTP cache module for Skipper based on [Souin](https://github.com/darkweak/souin) cache.  
+This is a distributed HTTP cache module for Skipper based on [Souin](https://github.com/uaysk/souin-redis) cache.  
 
 ## Features
 
@@ -25,7 +25,7 @@ And now the usage inside a Skipper instance.
 package main
 
 import (
-	souin_skipper "github.com/darkweak/souin/plugins/skipper"
+	souin_skipper "github.com/uaysk/souin-redis/plugins/skipper"
 	"github.com/zalando/skipper"
 	"github.com/zalando/skipper/filters"
 )
@@ -40,9 +40,9 @@ func main() {
 ```
 With that your application will be able to cache the responses if possible and returns at least the `Cache-Status` HTTP header with the different directives mentionned in the RFC specification.  
 You have to pass a Souin stringified JSON `Configuration` structure into the `httpcache` filter declaration.  
-See the full detailled configuration [here](https://github.com/darkweak/souin#optional-configuration).
+See the full detailled configuration [here](https://github.com/uaysk/souin-redis#optional-configuration).
 
 Other resources
 ---------------
 You can find an example for a docker-compose stack inside the `examples` folder.  
-See the [Souin](https://github.com/darkweak/souin) configuration for the full configuration, and its associated [development skipper middleware](https://github.com/darkweak/souin/blob/master/plugins/skipper)  
+See the [Souin](https://github.com/uaysk/souin-redis) configuration for the full configuration, and its associated [development skipper middleware](https://github.com/uaysk/souin-redis/blob/master/plugins/skipper)  

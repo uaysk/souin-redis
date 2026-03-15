@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
 
-	httpcache "github.com/darkweak/souin/plugins/goa"
+	httpcache "github.com/uaysk/souin-redis/plugins/goa"
 	goahttp "goa.design/goa/v3/http"
 )
 

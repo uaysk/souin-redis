@@ -10,7 +10,7 @@ tags = ["Beginners", "Advanced"]
 Here is the example about the Souin initialization.
 ```go
 import (
-	cache "github.com/darkweak/souin/plugins/fiber"
+	cache "github.com/uaysk/souin-redis/plugins/fiber"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -30,5 +30,5 @@ Look at the configuration section to discover [all configurable keys here]({{% r
 
 Other resources
 ---------------
-You can find an example for a docker-compose stack inside the [`examples` folder on the Github repository](https://github.com/darkweak/souin/tree/master/plugins/fiber/examples).
-Look at the [`BaseConfiguration` structure on pkg.go.dev documentation](https://pkg.go.dev/github.com/darkweak/souin/pkg/middleware#BaseConfiguration).
+You can find an example for a docker-compose stack inside the [`examples` folder on the Github repository](https://github.com/uaysk/souin-redis/tree/master/plugins/fiber/examples).
+Look at the [`BaseConfiguration` structure on pkg.go.dev documentation](https://pkg.go.dev/github.com/uaysk/souin-redis/pkg/middleware#BaseConfiguration).

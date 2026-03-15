@@ -10,7 +10,7 @@ import (
 	"time"
 
 	"github.com/bnkamalesh/webgo/v6"
-	"github.com/darkweak/souin/pkg/middleware"
+	"github.com/uaysk/souin-redis/pkg/middleware"
 )
 
 func Test_NewHTTPCache(t *testing.T) {

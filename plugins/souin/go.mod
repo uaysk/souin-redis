@@ -1,15 +1,15 @@
-module github.com/darkweak/souin/plugins/souin
+module github.com/uaysk/souin-redis/plugins/souin
 
-go 1.25
+go 1.24.5
 
 replace (
-	github.com/darkweak/souin v1.7.8 => ../..
-	github.com/darkweak/souin/plugins/souin/storages => ./storages
+	github.com/uaysk/souin-redis v1.7.8 => ../..
+	github.com/uaysk/souin-redis/plugins/souin/storages => ./storages
 )
 
 require (
-	github.com/darkweak/souin v1.7.8
-	github.com/darkweak/souin/plugins/souin/storages v1.7.8
+	github.com/uaysk/souin-redis v1.7.8
+	github.com/uaysk/souin-redis/plugins/souin/storages v1.7.8
 	github.com/darkweak/storages/core v0.0.18
 	github.com/fsnotify/fsnotify v1.8.0
 	go.uber.org/zap v1.27.0

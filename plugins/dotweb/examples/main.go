@@ -1,7 +1,7 @@
 package main
 
 import (
-	cache "github.com/darkweak/souin/plugins/dotweb"
+	cache "github.com/uaysk/souin-redis/plugins/dotweb"
 	"github.com/devfeel/dotweb"
 )
 

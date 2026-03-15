@@ -4,7 +4,7 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/darkweak/souin/configurationtypes"
+	"github.com/uaysk/souin-redis/configurationtypes"
 )
 
 const Mode ctxKey = "souin_ctx.MODE"

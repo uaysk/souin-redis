@@ -57,7 +57,7 @@ You have to declare the `experimental` block in your traefik static configuratio
 experimental:
   plugins:
     souin:
-      moduleName: github.com/darkweak/souin
+      moduleName: github.com/uaysk/souin-redis
       version: v1.7.8
 ```
 
@@ -65,5 +65,5 @@ With that your application will be able to cache the responses if possible and r
 
 Other resources
 ---------------
-You can find an example for a docker-compose stack inside the [`traefik` folder on the Github repository](https://github.com/darkweak/souin/tree/master/plugins/traefik).
-Look at the [`BaseConfiguration` structure on pkg.go.dev documentation](https://pkg.go.dev/github.com/darkweak/souin/pkg/middleware#BaseConfiguration).
+You can find an example for a docker-compose stack inside the [`traefik` folder on the Github repository](https://github.com/uaysk/souin-redis/tree/master/plugins/traefik).
+Look at the [`BaseConfiguration` structure on pkg.go.dev documentation](https://pkg.go.dev/github.com/uaysk/souin-redis/pkg/middleware#BaseConfiguration).

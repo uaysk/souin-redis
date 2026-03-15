@@ -98,7 +98,7 @@ volumes:
 As we defined the `caddy` service with a custom image, let's define the `Dockerfile` to build the `caddy` instance with `Souin` HTTP cache:
 ```Dockerfile
 FROM caddy:builder-alpine AS builder
-RUN xcaddy build --with github.com/darkweak/souin/plugins/caddy
+RUN xcaddy build --with github.com/uaysk/souin-redis/plugins/caddy
 
 FROM caddy
 COPY --from=builder /usr/bin/caddy /usr/bin/caddy

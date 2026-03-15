@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/bnkamalesh/webgo/v6"
-	cache "github.com/darkweak/souin/plugins/webgo"
+	cache "github.com/uaysk/souin-redis/plugins/webgo"
 )
 
 func defaultHandler(w http.ResponseWriter, _ *http.Request) {

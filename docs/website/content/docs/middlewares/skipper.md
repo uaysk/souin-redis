@@ -26,7 +26,7 @@ You can now use the `NewSouinFilter` in your Skipper codebase project to enable 
 package main
 
 import (
-	souin_skipper "github.com/darkweak/souin/plugins/skipper"
+	souin_skipper "github.com/uaysk/souin-redis/plugins/skipper"
 	"github.com/zalando/skipper"
 	"github.com/zalando/skipper/filters"
 )
@@ -45,4 +45,4 @@ With that your application will be able to cache the responses if possible and r
 
 Other resources
 ---------------
-You can find an example for a docker-compose stack inside the [`examples` folder on the Github repository](https://github.com/darkweak/souin/tree/master/plugins/skipper/examples).
+You can find an example for a docker-compose stack inside the [`examples` folder on the Github repository](https://github.com/uaysk/souin-redis/tree/master/plugins/skipper/examples).

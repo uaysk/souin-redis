@@ -1,11 +1,11 @@
-module github.com/darkweak/souin/plugins/souin/storages
+module github.com/uaysk/souin-redis/plugins/souin/storages
 
-go 1.25
+go 1.24.5
 
-replace github.com/darkweak/souin => ../../..
+replace github.com/uaysk/souin-redis => ../../..
 
 require (
-	github.com/darkweak/souin v1.7.8
+	github.com/uaysk/souin-redis v1.7.8
 	github.com/darkweak/storages/badger v0.0.13
 	github.com/darkweak/storages/core v0.0.18
 	github.com/darkweak/storages/etcd v0.0.13

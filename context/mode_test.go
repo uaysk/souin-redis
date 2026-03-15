@@ -3,7 +3,7 @@ package context
 import (
 	"testing"
 
-	"github.com/darkweak/souin/configurationtypes"
+	"github.com/uaysk/souin-redis/configurationtypes"
 	"go.uber.org/zap"
 )
 

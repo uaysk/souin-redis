@@ -116,7 +116,7 @@ You now have to update the Dockerfile `api/Dockerfile` to build the FrankenPHP/C
 +     --with github.com/dunglas/caddy-cbrotli \
 +     # Use this one in production
 +     # --with github.com/caddyserver/cache-handler \
-+     --with github.com/darkweak/souin/plugins/caddy \
++     --with github.com/uaysk/souin-redis/plugins/caddy \
 +     --with github.com/darkweak/storages/otter/caddy
 + 
 + FROM dunglas/frankenphp:latest AS frankenphp_upstream

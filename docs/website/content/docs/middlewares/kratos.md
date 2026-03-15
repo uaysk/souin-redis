@@ -12,7 +12,7 @@ tags = ["Beginners", "Advanced"]
 You can enable and configure the HTTP cache directly in your golang codebase project.
 ```go
 import (
-	httpcache "github.com/darkweak/souin/plugins/kratos"
+	httpcache "github.com/uaysk/souin-redis/plugins/kratos"
 	kratos_http "github.com/go-kratos/kratos/v2/transport/http"
 )
 
@@ -42,7 +42,7 @@ httpcache:
 After that you have to edit your server instanciation to use the HTTP cache configuration parser
 ```go
 import (
-	httpcache "github.com/darkweak/souin/plugins/kratos"
+	httpcache "github.com/uaysk/souin-redis/plugins/kratos"
 	kratos_http "github.com/go-kratos/kratos/v2/transport/http"
 )
 
@@ -72,5 +72,5 @@ Look at the configuration section to discover [all configurable keys here]({{% r
 
 Other resources
 ---------------
-You can find an example for a docker-compose stack inside the [`examples` folder on the Github repository](https://github.com/darkweak/souin/tree/master/plugins/kratos/examples).
-Look at the [`BaseConfiguration` structure on pkg.go.dev documentation](https://pkg.go.dev/github.com/darkweak/souin/pkg/middleware#BaseConfiguration).
+You can find an example for a docker-compose stack inside the [`examples` folder on the Github repository](https://github.com/uaysk/souin-redis/tree/master/plugins/kratos/examples).
+Look at the [`BaseConfiguration` structure on pkg.go.dev documentation](https://pkg.go.dev/github.com/uaysk/souin-redis/pkg/middleware#BaseConfiguration).

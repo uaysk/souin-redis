@@ -1,12 +1,12 @@
-module github.com/darkweak/souin/plugins/beego
+module github.com/uaysk/souin-redis/plugins/beego
 
 go 1.25
 
 require (
 	github.com/beego/beego/v2 v2.3.8
-	github.com/darkweak/souin v1.7.8
-	github.com/darkweak/souin/plugins/souin v1.7.8
-	github.com/darkweak/souin/plugins/souin/storages v1.7.8
+	github.com/uaysk/souin-redis v1.7.8
+	github.com/uaysk/souin-redis/plugins/souin v1.7.8
+	github.com/uaysk/souin-redis/plugins/souin/storages v1.7.8
 )
 
 require (
@@ -201,7 +201,7 @@ require (
 )
 
 replace (
-	github.com/darkweak/souin v1.7.8 => ../..
-	github.com/darkweak/souin/plugins/souin => ../souin
-	github.com/darkweak/souin/plugins/souin/storages => ../souin/storages
+	github.com/uaysk/souin-redis v1.7.8 => ../..
+	github.com/uaysk/souin-redis/plugins/souin => ../souin
+	github.com/uaysk/souin-redis/plugins/souin/storages => ../souin/storages
 )

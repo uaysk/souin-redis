@@ -7,7 +7,7 @@ tags = ["Beginners", "Advanced"]
 +++
 
 ## Compile the Souin extension for tyk
-You can compile your own Souin integration using the `Makefile` and the `docker-compose` inside the [tyk integration directory](https://github.com/darkweak/souin/tree/master/plugins/tyk) to generate the `souin-plugin.so` file.
+You can compile your own Souin integration using the `Makefile` and the `docker-compose` inside the [tyk integration directory](https://github.com/uaysk/souin-redis/tree/master/plugins/tyk) to generate the `souin-plugin.so` file.
 
 
 ## Usage
@@ -77,4 +77,4 @@ Look at the configuration section to discover [all configurable keys here]({{% r
 
 Other resources
 ---------------
-You can find an example for a docker-compose stack inside the [`tyk` folder on the Github repository](https://github.com/darkweak/souin/tree/master/plugins/tyk).
+You can find an example for a docker-compose stack inside the [`tyk` folder on the Github repository](https://github.com/uaysk/souin-redis/tree/master/plugins/tyk).

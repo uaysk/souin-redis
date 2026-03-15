@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	httpcache "github.com/darkweak/souin/plugins/kratos"
+	httpcache "github.com/uaysk/souin-redis/plugins/kratos"
 	"github.com/go-kratos/kratos/v2/config"
 	"github.com/go-kratos/kratos/v2/config/file"
 	kratos_http "github.com/go-kratos/kratos/v2/transport/http"

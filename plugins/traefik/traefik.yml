@@ -14,7 +14,7 @@ pilot:
 experimental:
   localPlugins:
     souin:
-      moduleName: github.com/darkweak/souin
+      moduleName: github.com/uaysk/souin-redis
 
 log:
   level: DEBUG
